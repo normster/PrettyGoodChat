@@ -12,29 +12,23 @@
         font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
         font-size: 100%;
       }
-
     </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
     <script src="popup.js"></script>
   </head>
+
   <body>
     <div id="keybase-login">
         <div id="keybase-prompt">Please enter Keybase login</div>
         <br>
         Username: <input id="login-username" type="text" name="username">
         Password: <input id="login-password" type="text" name="password">
-        <input id="login-button" type="submit" value="Login">
+        <button id="login-button" type="button">Login</button>
     </div>
-    <div id="message_input" style="display: none">
+    <div id="message-input" style="display: none">
         <input type="text" name="message">
-        <input id="encrypt" type="submit" value="Encrypt">
+        <button id="encrypt-button">Encrypt</button>
         <div id="text-output"></div>
-    </div
+    </div>
+    <script type="text/javascript" src="popup.js"></script>
   </body>
 </html>
