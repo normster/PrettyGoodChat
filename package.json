@@ -2,8 +2,8 @@
   "name": "PrettyGoodChat",
   "description": "A pretty good chat",
   "scripts": {
-    "build": "browserify -t babelify -o bundle.js",
-    "watch": "watchify -t babelify -o bundle.js"
+    "build": "browserify popup.js -t babelify -o bundle.js",
+    "watch": "watchify popup.js -t babelify -o bundle.js"
   },
   "repository": {
     "type": "git",
