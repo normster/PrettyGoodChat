@@ -1,28 +1,48 @@
-function hex2a(hexx) {
-    var hex = hexx.toString();//force conversion
-    var str = '';
-    for (var i = 0; i < hex.length; i += 2)
-        str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
-    return str;
-}
+var triplesec = require('triplesec');
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-document.getElementById("login-button").addEventListener("click", function() {
-    document.getElementById("keybase-login").style.display = "none";
-    var username = document.getElementById("login-username").value;
-    var password = document.getElementById("login-password").value;
-    console.log(username);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://keybase.io/_/api/1.0/getsalt.json?email_or_username=" + username, false);
-    xhr.send();
-
-    // TODO what if there's an error
-    var login_salt = json.parse(xhr.response);
-    pwh = scrypt.crypto_scrypt(scrypt.encode_utf8(password),
-                               scrypt.encode_utf8(hex2a(login_salt.salt)),
-                               32768, 8, 1, len=224).slice(192, 224);
-    console.log(pwh);
-    //hmac_pwh = HMAC-SHA512(pwh, base64decode(login_session))
-
-    document.getElementById("message-input").style.display = "block";
+var Login = React.createClass({
+  render: function() {
+    return  (
+      <form>
+      Username: <input type="text" name="username" />
+      Password: <input type="password" name="password" />
+      <button type="button">Login</button>
+      </form>
+    );
+  }
 });
+
+var Encrypt = React.createClass({
+  render: function() {
+    return  (
+      <form>
+      Message: <input type="text" name="message" />
+      <button type="button">Encrypt</button>
+      </form>
+    );
+  }
+});
+
+
+var App = React.createClass({
+  getInitialState: function() {
+    return {
+      loggedIn: false
+    }
+  },
+
+  render: function() {
+    if (this.state.loggedIn) {
+      return <Encrypt />
+    } else {
+      return <Login />
+    }
+  }
+});
+
+var mountNode = document.getElementById('react-app');
+
+ReactDOM.render(<App />, mountNode);

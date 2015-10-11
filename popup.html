@@ -1,35 +1,11 @@
 <!doctype html>
-<!--
- This page is shown when the extension button is clicked, because the
- "browser_action" field in manifest.json contains the "default_popup" key with
- value "popup.html".
- -->
 <html>
   <head>
     <title>Pretty Good Chat</title>
-    <style>
-      body {
-        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-        font-size: 100%;
-      }
-    </style>
-    <script src="scrypt.js"></script>
-    <script src="popup.js"></script>
   </head>
 
   <body>
-    <div id="keybase-login">
-        <div id="keybase-prompt">Please enter Keybase login</div>
-        <br>
-        Username: <input id="login-username" type="text" name="username">
-        Password: <input id="login-password" type="text" name="password">
-        <button id="login-button" type="button">Login</button>
-    </div>
-    <div id="message-input" style="display: none">
-        <input type="text" name="message">
-        <button id="encrypt-button">Encrypt</button>
-        <div id="text-output"></div>
-    </div>
-    <script type="text/javascript" src="popup.js"></script>
+    <div id="react-app"></div>
+    <script type="text/javascript" src="bundle.js"></script>
   </body>
 </html>
