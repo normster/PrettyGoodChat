@@ -1,4 +1,6 @@
 var triplesec = require('triplesec');
+var scrypt = require('scryptsy');
+var sha512 = require('sha512');
 var request = require('superagent');
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -20,11 +22,23 @@ var Login = React.createClass({
       .get('https://keybase.io/_/api/1.0/getsalt.json')
       .query({email_or_username: username})
       .end(function(err, res){
+        var login_session = res.body.login_session;
         var login_salt = res.body.salt;
-        var scrypt = new triplesec.Scrypt({N: 32768, r: 8, p: 1, c: 64, klass: });
-        scrypt.run({key: password, salt: hex2bin(login_salt), dkLen: 224}, function(salted_pass) {
-          console.log(salted_pass.slice(192, 224));
-        })
+        var data = scrypt(password, hex2bin(login_salt), 32768, 8, 1, 224);
+        var hasher = sha512.hmac(data.slice(192, 224));
+        hasher.update(atob(login_session));
+        var salted_pass = hasher.finalize().toString('hex');
+        request
+          .post('https://keybase.io/_/api/1.0/login.json')
+          .send({email_or_username: username, hmac_pwh: salted_pass, login_session: login_session})
+          .end(function(err, res){
+            console.log(res);
+
+          });
+        // var scrypt = new triplesec.Scrypt({N:  32768, r: 8, p: 1, c: 64, klass: });
+        // scrypt.run({key: password, salt: hex2bin(login_salt), dkLen: 224}, function(salted_pass) {
+        //   console.log(salted_pass.slice(192, 224));
+        // })
       });
   },
 
