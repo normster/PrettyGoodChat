@@ -1,0 +1,23 @@
+{
+  "name": "PrettyGoodChat",
+  "description": "A pretty good chat",
+  "scripts": {
+    "build": "browserify -t babelify -o bundle.js",
+    "watch": "watchify -t babelify -o bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/normster/PrettyGoodChat"
+  },
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "superagent": "^1.4.0",
+    "triplesec": "^3.0.25"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "watchify": "^3.4.0"
+  }
+}
