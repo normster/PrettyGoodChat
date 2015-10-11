@@ -11,6 +11,7 @@
   },
 
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "https://keybase.io/_/api/1.0/*"
   ]
 }
