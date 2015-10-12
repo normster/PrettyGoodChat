@@ -28,6 +28,8 @@ var Login = React.createClass({
         var hasher = sha512.hmac(data.slice(192, 224));
         hasher.update(atob(login_session));
         var salted_pass = hasher.finalize().toString('hex');
+        console.log(password);
+        console.log(salted_pass);
         request
           .post('https://keybase.io/_/api/1.0/login.json')
           .send({email_or_username: username, hmac_pwh: salted_pass, login_session: login_session})
@@ -35,10 +37,12 @@ var Login = React.createClass({
             console.log(res);
 
           });
-        // var scrypt = new triplesec.Scrypt({N:  32768, r: 8, p: 1, c: 64, klass: });
+
+
+        // var scrypt = new triplesec({N:  32768, r: 8, p: 1, c: 64});
         // scrypt.run({key: password, salt: hex2bin(login_salt), dkLen: 224}, function(salted_pass) {
         //   console.log(salted_pass.slice(192, 224));
-        // })
+        // });
       });
   },
 
