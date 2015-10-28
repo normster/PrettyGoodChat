@@ -12,6 +12,8 @@
   "dependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "scryptsy": "^1.2.1",
+    "sha512": "0.0.1",
     "superagent": "^1.4.0",
     "triplesec": "^3.0.25"
   },
